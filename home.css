@@ -19,9 +19,6 @@ body {
     position: fixed;
     padding: 10px;
     width: 50%;
-    /* height: 100%;  <-- rimosso per evitare conflitti */
-    /* overflow-y: none; <-- valore non valido */
-    /* height: fit-content; <-- in conflitto con height:100% */
 }
 
 .down {
@@ -77,14 +74,14 @@ body {
     z-index: 0;
 }
 
-/* ✅ Immagini fluide, niente stiramenti */
+/* Immagini fluide, niente stiramenti */
 img {
     display: block;
     max-width: 100%;
     height: auto;  /* fondamentale */
 }
 
-/* ✅ Video: il contenitore riserva spazio (anti-CLS) */
+/* Video: il contenitore riserva spazio (anti-CLS) */
 .video-container {
     position: relative;
     width: 100%;
@@ -239,11 +236,10 @@ a:hover {
   aspect-ratio: 9 / 16;   /* cambia in 16/9 se i file sono orizzontali */
 }
 
-/* 📱 Mobile: evita il formato “quadrato” */
+/* 📱 Mobile */
 @media (max-width: 600px) {
   .video-row {
-    flex-direction: column;   /* affiancati -> impilati */
-    gap: 12px;
+    flex-direction: row;   /* affiancati */
   }
   .video-row .video-container {
     width: 100%;              /* niente 50% su mobile */

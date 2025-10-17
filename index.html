@@ -2,7 +2,6 @@
   <head>
     <link rel="icon" href="./favicon.png" type="image/png">
     <meta charset="UTF-8">
-    <!-- Viewport: tienine uno solo -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="home.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -144,8 +143,7 @@
               <source src="./momotaro/momotaro-2.mp4" type="video/mp4">
             </video>
           </div>    
-          <img src="./momotaro/momotaro-3.webp" id="Antr02" data-index="1020" loading="lazy" decoding="async" alt="">
-          <!-- Quando hai le dimensioni reali, aggiungi width/height anche qui -->
+          <img src="./momotaro/momotaro-3.webp" id="Antr02" data-index="1020" width="2564" height="184" loading="lazy" decoding="async" alt="">
         </div>
 
       </div> <!-- /.image-container -->
@@ -160,156 +158,176 @@
       <div class="footer"><div class="num about">About</div><div>Riccardo Pezzillo</div></div>
     </div>
 
-    <script>
-      $(document).ready(function() {
-        function updateInfo() {
-          const galleryItems = $('.gallery-item');
-          let currentIndex = 0;
+  <script>
+    $(document).ready(function() {
+    function updateInfo() {
+      const galleryItems = $('.gallery-item');
+      let currentIndex = 0;
 
-          galleryItems.each(function(index) {
-            const offset = $(this).offset().top;
-            const height = $(this).outerHeight();
+      galleryItems.each(function(index) {
+        const offset = $(this).offset().top;
+        const height = $(this).outerHeight();
 
-            if (offset < ($(window).scrollTop() + $(window).height()) && (offset + height) > $(window).scrollTop()) {
-              currentIndex = index;
-              return false;
-            }
-          });
-
-          if (currentIndex !== -1) {
-            $('.info').hide();
-            $('.info[data-index="' + currentIndex + '"]').show();
-
-            $('.selector').hide();
-            $('.selector[data-index="' + currentIndex + '"]').show();
-
-            $('.projectsresp').hide();
-            $('.projectsresp[data-index="' + currentIndex + '"]').show();
-
-            $('.projects > div').css({
-              'padding': '0px',
-              'gap': '14%'
-            });
-            $('.projects > div[data-index="' + currentIndex + '"]').css({
-              'padding-left': '8%',
-              'gap': '6%'
-            });
-          }
+        if (offset < ($(window).scrollTop() + $(window).height()) && (offset + height) > $(window).scrollTop()) {
+          currentIndex = index;
+          return false;
         }
-
-        $('.gallery').on('scroll', updateInfo);
-        updateInfo();
       });
 
-      $(document).ready(function() {
-        const scrollOffset = 1;
+      if (currentIndex !== -1) {
+        $('.info').hide();
+        $('.info[data-index="' + currentIndex + '"]').show();
 
-        $('.selector img, .selector video').on('click', function() {
-          const mediaIndex = $(this).data('index');
-          const target = $('.gallery img[data-index="' + mediaIndex + '"], .gallery video[data-index="' + mediaIndex + '"], .gallery .videosform[data-index="' + mediaIndex + '"], .gallery .video-container[data-index="' + mediaIndex + '"]');
+        $('.selector').hide();
+        $('.selector[data-index="' + currentIndex + '"]').show();
 
-          if (target.length) {
-            const galleryScrollTop = target.position().top + $('.gallery').scrollTop() + scrollOffset;
-            $('.gallery').animate({ scrollTop: galleryScrollTop }, 500);
-          }
+        $('.projectsresp').hide();
+        $('.projectsresp[data-index="' + currentIndex + '"]').show();
+
+        $('.projects > div').css({
+          'padding': '0px',
+          'gap': '14%'
         });
-      });
-
-      $(document).ready(function() {
-        const scrollOffset = 1;
-
-        $('.projects > div').on('click', function() {
-          const projectIndex = $(this).data('index');
-          const target = $('.gallery-item[data-index="' + projectIndex + '"]');
-
-          if (target.length) {
-            const galleryScrollTop = target.position().top + $('.gallery').scrollTop() + scrollOffset;
-            $('.gallery').animate({ scrollTop: galleryScrollTop }, 500);
-          }
+        $('.projects > div[data-index="' + currentIndex + '"]').css({
+          'padding-left': '8%',
+          'gap': '6%'
         });
-      });
-
-      $(document).ready(function() {
-        $('.footer').click(function() {
-          $('.aboutopen').toggle();
-          $(this).toggleClass('active');
-          $('.info-container').toggleClass('activetwo');
-          $('.projects').toggleClass('activetwo');
-        });
-      });
-
-      function checkWindowSize() {
-        if ($(window).width() <= 600) {
-          $('.gallery').css({
-            'position': 'relative',
-            'width': '94%',
-            'float': 'right'
-          });
-          $('.projects').hide();
-          $('.down').hide();
-          $('.info-container').hide();
-          $('.selector-container').css({
-            'position': 'absolute',
-            'left': '0',
-            'top': '50%',
-            'transform': 'translate(0%, -50%)',
-            'width': '12%'
-          });
-          $('.projectsresp-container').css({ 'display': 'block' });
-        }
       }
+    }
 
-      $(document).ready(function() {
-        checkWindowSize();
-        $(window).resize(function() { checkWindowSize(); });
+    $('.gallery').on('scroll', updateInfo);
+    updateInfo();
+    });
+
+    $(document).ready(function() {
+    const scrollOffset = 1;
+
+    $('.selector img, .selector video').on('click', function() {
+      const mediaIndex = $(this).data('index');
+      const target = $('.gallery img[data-index="' + mediaIndex + '"], .gallery video[data-index="' + mediaIndex + '"], .gallery .videosform[data-index="' + mediaIndex + '"], .gallery .video-container[data-index="' + mediaIndex + '"]');
+
+      if (target.length) {
+        const galleryScrollTop = target.position().top + $('.gallery').scrollTop() + scrollOffset;
+        $('.gallery').animate({ scrollTop: galleryScrollTop }, 500);
+      }
+    });
+    });
+
+    $(document).ready(function() {
+    const scrollOffset = 1;
+
+    $('.projects > div').on('click', function() {
+      const projectIndex = $(this).data('index');
+      const target = $('.gallery-item[data-index="' + projectIndex + '"]');
+
+      if (target.length) {
+        const galleryScrollTop = target.position().top + $('.gallery').scrollTop() + scrollOffset;
+        $('.gallery').animate({ scrollTop: galleryScrollTop }, 500);
+      }
+    });
+    });
+
+    /* ✅ SEZIONE ABOUT: apertura e chiusura cliccando FUORI */
+    $(document).ready(function() {
+    const $footer = $('.footer');
+    const $about = $('.aboutopen');
+    const $info = $('.info-container');
+    const $projects = $('.projects');
+
+    // Click sul pulsante "About"
+    $footer.on('click', function(event) {
+      event.stopPropagation(); // evita propagazione
+      $about.toggle();
+      $footer.toggleClass('active');
+      $info.toggleClass('activetwo');
+      $projects.toggleClass('activetwo');
+    });
+
+    // Click FUORI dalla sezione About → chiudi
+    $(document).on('click', function(event) {
+      // Se la sezione è aperta e si clicca FUORI
+      if ($about.is(':visible') && !$about.is(event.target) && $about.has(event.target).length === 0 && !$footer.is(event.target) && $footer.has(event.target).length === 0) {
+        $about.hide();
+        $footer.removeClass('active');
+        $info.removeClass('activetwo');
+        $projects.removeClass('activetwo');
+      }
+    });
+    });
+
+    function checkWindowSize() {
+    if ($(window).width() <= 600) {
+      $('.gallery').css({
+        'position': 'relative',
+        'width': '94%',
+        'float': 'right'
       });
+      $('.projects').hide();
+      $('.down').hide();
+      $('.info-container').hide();
+      $('.selector-container').css({
+        'position': 'absolute',
+        'left': '0',
+        'top': '50%',
+        'transform': 'translate(0%, -50%)',
+        'width': '12%'
+      });
+      $('.projectsresp-container').css({ 'display': 'block' });
+    }
+    }
 
-      $(document).ready(function () {
-        $('.video-container').each(function (index) {
-          const $container = $(this);
-          const $video = $container.find('.lazy-video');
-          const $thumbnail = $container.find('.video-thumbnail');
+    $(document).ready(function() {
+    checkWindowSize();
+    $(window).resize(function() { checkWindowSize(); });
+    });
 
-          const showThumbnail = () => {
-            $thumbnail.show();
-            $video.hide();
-          };
+    $(document).ready(function () {
+    $('.video-container').each(function (index) {
+      const $container = $(this);
+      const $video = $container.find('.lazy-video');
+      const $thumbnail = $container.find('.video-thumbnail');
 
-          const showVideo = () => {
-            $thumbnail.hide();
-            $video.show();
-          };
+      const showThumbnail = () => {
+        $thumbnail.show();
+        $video.hide();
+      };
 
-          const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-              if (entry.isIntersecting) {
-                console.log(`Contenitore ${index} visibile, carico il video`);
-                $video[0].load();
-                observer.unobserve(entry.target);
-              } else {
-                console.log(`Contenitore ${index} non più visibile, ripristino thumbnail`);
-                showThumbnail();
-              }
-            });
-          });
+      const showVideo = () => {
+        $thumbnail.hide();
+        $video.show();
+      };
 
-          observer.observe(this);
-
-          $video.on('canplay', function () {
-            if (this.readyState >= 3) {
-              console.log(`Video ${index} pronto per la riproduzione`);
-              showVideo();
-            }
-          });
-
-          $video.on('error', function () {
-            console.error(`Errore nel caricamento del video ${index}`);
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            console.log(`Contenitore ${index} visibile, carico il video`);
+            $video[0].load();
+            observer.unobserve(entry.target);
+          } else {
+            console.log(`Contenitore ${index} non più visibile, ripristino thumbnail`);
             showThumbnail();
-          });
-
-          showThumbnail();
+          }
         });
       });
-    </script>
+
+      observer.observe(this);
+
+      $video.on('canplay', function () {
+        if (this.readyState >= 3) {
+          console.log(`Video ${index} pronto per la riproduzione`);
+          showVideo();
+        }
+      });
+
+      $video.on('error', function () {
+        console.error(`Errore nel caricamento del video ${index}`);
+        showThumbnail();
+      });
+
+      showThumbnail();
+    });
+    });
+  </script>
+
   </body>
 </html>
