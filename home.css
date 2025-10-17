@@ -233,10 +233,26 @@ a:hover {
     object-fit: cover;
 }
 
-
-/* Alza i due video affiancati (scegli 4/5 o 9/16 in base al formato reale) */
+/* Rapporto personalizzato per i due video TNF su desktop (se verticali) */
 .video-row .video-container[data-index="1064"],
 .video-row .video-container[data-index="1067"] {
-  aspect-ratio: 9 / 16;   /* PROVA 1: verticale “Instagram” 4:5 */
-  /* aspect-ratio: 9 / 16;  PROVA 2: verticale “story” 9:16 */
+  aspect-ratio: 9 / 16;   /* cambia in 16/9 se i file sono orizzontali */
+}
+
+/* 📱 Mobile: evita il formato “quadrato” */
+@media (max-width: 600px) {
+  .video-row {
+    flex-direction: column;   /* affiancati -> impilati */
+    gap: 12px;
+  }
+  .video-row .video-container {
+    width: 100%;              /* niente 50% su mobile */
+    aspect-ratio: 9 / 16;     /* usa il rapporto reale dei tuoi file (16/9 se orizzontali) */
+  }
+  .video-row video,
+  .video-row .video-thumbnail {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }
